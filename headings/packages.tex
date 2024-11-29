@@ -1,40 +1,27 @@
-% Tikz
-\usetikzlibrary{calc}
-\usetikzlibrary{mindmap,trees,shapes,arrows,backgrounds,topaths}
-\usetikzlibrary{decorations.pathmorphing, shapes.geometric}
+% ------------------------ %
+% 	  Packages		%
+% ------------------------ %
 
-% Text
-\usepackage{enumitem}
-\usepackage{ulem}
-\usepackage{pifont}
-
-% Maths
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{pgffor}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage{xcolor}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
-\usepackage{amsopn}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+\usepackage{csquotes}
+\usepackage{dblfloatfix}
+\usepackage{comment}
+\renewcommand{\ttdefault}{lmtt}
 
-% Plots
-\usepackage{pgfplots}
-\usepgfplotslibrary{groupplots}
-
-% Tables
-\usepackage{booktabs}
-\usepackage{array}
-\newcolumntype{L}{>$l<$}
-\arraycolsep=1.4pt
-\setlength{\tabcolsep}{3pt}
-
-% Algos
-\usepackage[ruled]{algorithm2e}
-
-% Pgfplot
-\pgfplotsset{
-    legend image code/.code={
-        \draw[mark repeat=2,mark phase=2] plot coordinates {
-            (0cm,0cm)
-            (0.25cm,0cm)
-            (0.25cm,0cm)
-        };
-    }
-}

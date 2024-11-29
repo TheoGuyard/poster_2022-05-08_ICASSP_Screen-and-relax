@@ -1,102 +1,142 @@
-% Objective values and functions
-\newcommand{\pobj}{p}
-\newcommand{\robj}{r}
-\newcommand{\dobj}{d}
+% ------------------------------  %
+% 			Macros 		   	  %
+% ------------------------------  %
 
-% Variables
-\newcommand{\pvletter}{x}
-\newcommand{\wvletter}{w}
-\newcommand{\dvletter}{u}
-\newcommand{\vvletter}{v}
-\newcommand{\bvletter}{z}
-\newcommand{\pv}{\mathbf{\pvletter}}
-\newcommand{\wv}{\mathbf{\wvletter}}
-\newcommand{\dv}{\mathbf{\dvletter}}
-\newcommand{\vv}{\mathbf{\vvletter}}
-\newcommand{\bv}{\mathbf{\bvletter}}
-\newcommand{\pvi}[1]{\pvletter_{#1}}
-\newcommand{\wvi}[1]{\wvletter_{#1}}
-\newcommand{\dvi}[1]{\dvletter_{#1}}
-\newcommand{\vvi}[1]{\vvletter_{#1}}
-\newcommand{\bvi}[1]{\bvletter_{#1}}
+% Problems
+\newcommand{\primal}{\mathcal{P}\xspace}
+\newcommand{\dual}{\mathcal{D}\xspace}
+\newcommand{\opt}[1]{\ensuremath{{{#1}^{\star}}}\xspace}
 
-% Problem data
-\newcommand{\pdim}{n}
-\newcommand{\ddim}{m}
-\newcommand{\dic}{\mathbf{A}}
-\newcommand{\dici}[1]{\mathbf{a}_{#1}}
-\newcommand{\dicii}[1]{a_{#1}}
-\newcommand{\obs}{\mathbf{y}}
-\newcommand{\obsi}[1]{y_{#1}}
-\newcommand{\reg}{\lambda}
-\newcommand{\groundtruth}{\pv^{\dagger}}
-\newcommand{\lfunc}{f}
-\newcommand{\pfunc}{h}
-\newcommand{\rfunc}{g}
-\newcommand{\dfunc}{D}
-\newcommand{\relaxrfunc}{\tilde{g}}
-\newcommand{\relaxpfunc}{\tilde{h}}
-\newcommand{\bigM}{M}
-\newcommand{\regtwo}{\alpha}
-\newcommand{\rslope}{\tau}
-\newcommand{\rlimit}{\mu}
-\newcommand{\noise}{\boldsymbol{\epsilon}}
+% Regularizer
+\newcommand{\rego}{\ensuremath{\lambda}\xspace}
+\newcommand{\regt}{\ensuremath{\gamma}\xspace}
 
-% Indices
-\newcommand{\idxentry}{i}
+% Primal
+\newcommand{\pfunc}{\ensuremath{P}\xspace}
+\newcommand{\pve}{\ensuremath{x}\xspace}
+\newcommand{\pv}{\ensuremath{\mathbf{\pve}}\xspace}
+\newcommand{\pveopt}{\ensuremath{\pve^\star}\xspace}
+\newcommand{\pvopt}{\ensuremath{\pv^\star}\xspace}
+\newcommand{\pvew}{\ensuremath{\tilde{\pve}}\xspace}
+\newcommand{\pvw}{\ensuremath{\tilde{\pv}}\xspace}
+\newcommand{\pvewopt}{\ensuremath{\pvew^\star}\xspace}
+\newcommand{\pvwopt}{\ensuremath{\pvw^\star}\xspace}
+\newcommand{\pr}{\ensuremath{{\mathcal{X}}}\xspace}
 
-% BnB
-\newcommand{\pset}{\mathcal{X}}
-\newcommand{\setidx}{\mathcal{S}}
-\newcommand{\setzero}{\setidx_0}
-\newcommand{\setone}{\setidx_1}
-\newcommand{\setnone}{\setidx_\bullet}
-\newcommand{\nodeSymb}{\nu}
-\newcommand{\node}[1]{#1^{\nodeSymb}}
+% Dual
+\newcommand{\dfunc}{\ensuremath{D}\xspace}
+\newcommand{\dve}{\ensuremath{u}\xspace}
+\newcommand{\dv}{\ensuremath{\mathbf{\dve}}\xspace}
+\newcommand{\dveopt}{\ensuremath{\dve^\star}\xspace}
+\newcommand{\dvopt}{\ensuremath{\dv^\star}\xspace}
+\newcommand{\dvew}{\ensuremath{\tilde{\dve}}\xspace}
+\newcommand{\dvw}{\ensuremath{\tilde{\dv}}\xspace}
+\newcommand{\dvewopt}{\ensuremath{\dvew^\star}\xspace}
+\newcommand{\dvwopt}{\ensuremath{\dvw^\star}\xspace}
+\newcommand{\dr}{\ensuremath{{\mathcal{U}}}\xspace}
 
-% Screening
-\newcommand{\saferegion}{\mathcal{R}}
+% Variable
+\newcommand{\obs}{\ensuremath{\y}\xspace}
+\newcommand{\dicintro}{\ensuremath{\D}\xspace}
+\newcommand{\dic}{\ensuremath{\A}\xspace}
+\newcommand{\atom}{\ensuremath{\a}\xspace}
+\newcommand{\Id}{\ensuremath{\I}\xspace}
+\newcommand{\values}{\ensuremath{\boldsymbol{\eta}}\xspace}
+
+% Dimensions
+\newcommand{\pdim}{\ensuremath{n}\xspace}
+\newcommand{\ddim}{\ensuremath{m}\xspace}
+
+% Regions
+\newcommand{\region}{\ensuremath{{\mathcal{R}}}\xspace}
+\newcommand{\sphere}{\ensuremath{{\mathcal{S}}}\xspace}
+
+% Sets
+\newcommand{\set}{\ensuremath{\mathcal{I}}\xspace}
+\newcommand{\cset}{\ensuremath{\bar{\set}}\xspace}
+\newcommand{\nset}{\ensuremath{\set_{\bullet}}\xspace}
+\newcommand{\setnull}{\ensuremath{{\mathcal{\set}_0}}\xspace}
+\newcommand{\setnullopt}{\ensuremath{{\mathcal{\set}_0^\star}}\xspace}
+\newcommand{\setnulloptcomp}{\ensuremath{{\overline{\mathcal{\set}}_0^\star}}\xspace}
+\newcommand{\setpos}{\ensuremath{{\mathcal{\set}_+}}\xspace}
+\newcommand{\setposcmp}{\ensuremath{{\overline{\mathcal{\set}}_+}}\xspace}
+% \newcommand{\setposopt}{\ensuremath{\mathcal{\set}_+^\star}\xspace}
+\newcommand{\setposopt}{\ensuremath{\mathcal{J}^\star}\xspace}
+\newcommand{\setposoptcmp}{\ensuremath{\overline{\mathcal{\set}}_+^\star}\xspace}
+\newcommand{\setscreen}{\ensuremath{{\mathcal{I}}}\xspace}
+\newcommand{\setscreenc}{\ensuremath{{\overline{\mathcal{I}}}}\xspace}
+\newcommand{\setrelax}{\ensuremath{{\mathcal{J}}}\xspace}
+\newcommand{\setrelaxc}{\ensuremath{{\overline{\mathcal{J}}}}\xspace}
+\newcommand{\setsr}{\ensuremath{{\mathcal{K}}}\xspace}
+\newcommand{\setsrc}{\ensuremath{{\overline{\mathcal{K}}}}\xspace}
+\newcommand{\setopt}{\ensuremath{{\mathcal{\set}}^\star}\xspace}
+% \newcommand{\setscreen}{\ensuremath{{\mathcal{\set}_s}}\xspace}
+% \newcommand{\setscreenc}{\ensuremath{{\overline{\mathcal{\set}}_s}}\xspace}
+% \newcommand{\setrelax}{\ensuremath{{\mathcal{\set}_r}}\xspace}
+% \newcommand{\setrelaxc}{\ensuremath{{\overline{\mathcal{\set}}_r}}\xspace}
+
+% Operators
+\newcommand{\argmin}[1]{\ensuremath{\underset{#1}{\mathrm{argmin}}}\xspace}
+\newcommand{\argmax}[1]{\ensuremath{\underset{#1}{\mathrm{argmax}}}\xspace}
+\newcommand{\scalprod}[2]{\ensuremath{\langle{#1,#2}\rangle}\xspace}
+\newcommand{\card}[1]{\ensuremath{\mathrm{card}(#1)}\xspace}
+\newcommand{\conj}[1]{\ensuremath{#1^{\star}}\xspace}
+\newcommand{\proj}[2]{\ensuremath{\mathrm{proj}_{#2}(#1)}\xspace}
+\newcommand{\prox}[2]{\ensuremath{\mathrm{prox}_{#2}(#1)}\xspace}
+\newcommand{\gap}[2]{\ensuremath{\mathrm{gap}({#1},{#2})}\xspace}
+\newcommand{\supp}[1]{\ensuremath{\mathrm{supp}({#1})}\xspace}
+\newcommand{\abs}[1]{\ensuremath{|#1|}\xspace}
+\newcommand{\norm}[1]{\ensuremath{\|#1\|}\xspace}
+\newcommand{\normZ}[1]{\ensuremath{\|#1\|_0}\xspace}
+\newcommand{\normO}[1]{\ensuremath{\|#1\|_1}\xspace}
+\newcommand{\normT}[1]{\ensuremath{\|#1\|_2}\xspace}
+\newcommand{\transp}[1]{\ensuremath{#1^{T}}\xspace}
+\newcommand{\sign}[1]{\ensuremath{\mathrm{sign}({#1})}\xspace}
+\newcommand{\diff}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}\xspace}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand{\intervint}[2]{\llbracket#1,#2\rrbracket}
+\newcommand{\idxpvel}{i}
+\newcommand{\idxscreen}{\ell}
+\newcommand{\idxrelax}{\ell}
+\newcommand{\subgrad}{\mathbf{g}}
+\newcommand{\setnz}{\mathcal{I}^\star}
+
+\newcommand{\ones}{{\bf1}}
+
 \newcommand{\safesphere}{\mathcal{S}}
-\newcommand{\spherecenter}{\mathbf{c}}
-\newcommand{\sphereradius}{r}
+\newcommand{\spherec}{\dv}
+\newcommand{\spherer}{r}
 
-% Peeling
-\newcommand{\bigL}{\boldsymbol{\alpha}}
-\newcommand{\bigU}{\boldsymbol{\beta}}
-\newcommand{\bigLi}[1]{\alpha_{#1}}
-\newcommand{\bigUi}[1]{\beta_{#1}}
+% Closed-form expression quantities
+\newcommand{\matxpos}{\B}
+\newcommand{\matcorrpos}{\G}
+\newcommand{\vecxpos}{\b}
 
-% Math operators
-\DeclareMathOperator{\argmax}{argmax}
-\DeclareMathOperator{\argmin}{argmin}
-\DeclareMathOperator{\biconjugate}{biconj}
-\DeclareMathOperator{\card}{card}
-\DeclareMathOperator{\complset}{cmpl}
-\DeclareMathOperator{\convex}{cvx}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\interior}{int}
-\DeclareMathOperator{\prox}{prox}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\sign}{sign}
+% sub-problem quantities
+\newcommand{\reducedNormOne}{\mathbf{v}}
+\newcommand{\reducedNormTwo}{\M}
+\newcommand{\obsred}{\obs_r}
+\newcommand{\pvred}{\pv_r}
+\newcommand{\dicred}{\dic_r}
+\newcommand{\pdimred}{\pdim_r}
+\newcommand{\pfunred}{\pfun_r}
 
 
-% Math misc
-\newcommand{\1}{\mathbf{1}}
-\newcommand{\0}{\mathbf{0}}
-\newcommand{\abs}[1]{|#1|}
-\newcommand{\biconj}[1]{#1^{**}}
-\newcommand{\bigO}{\mathcal{O}}
-\newcommand{\conj}[1]{#1^{*}}
-\newcommand{\icvx}{\eta}
-\newcommand{\intervint}[2]{[#1,#2]}
-\newcommand{\iter}[2]{#1^{#2}}
-\newcommand{\norm}[2]{\|#1\|_#2}
-\newcommand{\opt}[1]{#1^{\star}}
-\newcommand{\pospart}[1]{[#1]_+}
-\newcommand{\separable}[2]{#1_{#2}}
-\newcommand{\subdiff}{\partial}
-\newcommand{\transp}[1]{#1^{\mathrm{T}}}
+% Rank-one update data
+\newcommand{\permat}{\P}
+\newcommand{\dicobs}{\v}
+\newcommand{\dicobsrego}{\w}
+\newcommand{\dicobsregoe}{w}
+\newcommand{\gramposi}{\g_1}
+\newcommand{\gramnulli}{\g_2}
+\newcommand{\gramii}{q}
+\newcommand{\graminvgramposi}{\r}
+\newcommand{\outerprod}{\R}
+\newcommand{\lowerightblock}{d}
+\newcommand{\matxposred}{\tilde{\matxpos}}
 
-% Edition macros
-\newcommand{\AddTodo}[1]{\textcolor{red}{[#1]}}
+% Proofs
+\newcommand{\multipl}{\boldsymbol{\mu}}
+\newcommand{\sphereray}{\boldsymbol{\tau}}
